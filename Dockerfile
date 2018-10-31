@@ -3,7 +3,7 @@ FROM osixia/openldap
 MAINTAINER Antonio de Barros <antonio.barros@ufrr.br>
 
 RUN apt-get update \
-    && apt-get install -y wget \
+    && apt-get install -y wget net-tools \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
