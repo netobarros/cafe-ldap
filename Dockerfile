@@ -2,6 +2,13 @@ FROM osixia/openldap
 
 MAINTAINER Antonio de Barros <antonio.barros@ufrr.br>
 
+RUN apt-get update \
+    && apt-get install -y wget \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir /var/lib/ldap && chown openldap:openldap /var/lib/ldap
+
 RUN wget https://svn.rnp.br/repos/CAFe/conf/openldap/slapd -O /etc/default/slapd --no-check-certificate \
 && wget https://svn.rnp.br/repos/CAFe/conf/openldap/slapd.conf -O /etc/ldap/slapd.conf --no-check-certificate \
 && wget https://svn.rnp.br/repos/CAFe/conf/openldap/ldap.conf -O /etc/ldap/ldap.conf --no-check-certificate \
