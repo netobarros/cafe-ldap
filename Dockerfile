@@ -21,7 +21,6 @@ RUN wget https://svn.rnp.br/repos/CAFe/conf/openldap/slapd -O /etc/default/slapd
     && mkdir /scripts \
     && wget https://svn.rnp.br/repos/CAFe/conf/ssl/openssl.cnf -O /scripts/openssl.cnf --no-check-certificate \
     && wget https://svn.rnp.br/repos/CAFe/scripts/openldap/popula.sh -O /scripts/popula.sh --no-check-certificate \
-    && chmod +x /scripts/popula.sh \
     && wget https://svn.rnp.br/repos/CAFe/scripts/homologacao/clientes/cafe-homolog-ldap.sh -O /scripts/cafe-homolog-ldap.sh --no-check-certificate \
     && chmod +x /scripts/*.sh
 
