@@ -1,0 +1,12 @@
+servidor:
+   image: netobarros/cafe-ldap
+   environment:
+     - DOMINIO_INST=exemplo.edu.br
+     - SENHA_ADMIN=1234
+   ports:
+     - 389:389/tcp
+     - 636:636/tcp
+   volumes:
+     - ldap-config:/etc/ldap
+     - ldap-lib:/var/lib/ldap
+
