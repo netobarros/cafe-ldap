@@ -2,6 +2,10 @@
 
 Imagem para criar containers com LDAP padronizado para uso no projeto CAFe
 
+# Variáveis ENV
+DOMINIO_INST: domínio para a base LDAP, que será a referência da base ($RAIZ_BASE_LDAP)
+
+SENHA_ADMIN: senha para o DN cn=admin,$RAIZ_BASE_LDAP
 
 # Sobre o CAFe
 
