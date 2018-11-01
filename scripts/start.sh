@@ -3,12 +3,17 @@
 # setar env HOSTNAME e RAIZ_BASE_LDAP para iniciar o container
 
 if [ -z "$HOSTNAME" ]; then
-  echo "Preencha env HOSTNAME para usar este container"
+  echo "Preencha env HOSTNAME para iniciar o container"
   exit 1;
 fi
 
 if [ -z "$DOMINIO_INST" ]; then
-  echo "Preencha env DOMINIO_INST para usar este container"
+  echo "Preencha env DOMINIO_INST para iniciar o container"
+  exit 1;
+fi
+
+if [ -z "$SENHA_ADMIN" ]; then
+  echo "Preencha env SENHA_ADMIN para iniciar o container"
   exit 1;
 fi
 
@@ -36,6 +41,8 @@ if [ -x /scripts/popula.sh ]; then
   chown openldap:openldap -R /etc/ldap/
   
   sed -i "s/DOMINIO_INST=.*//" /scripts/popula.sh
+  sed -i "s/^SENHA_ADMIN=.*/SENHA_ADMIN=${SENHA_ADMIN:=1234}/" /scripts/popula.sh
+  sed -i "s/^SENHA_LEITOR_SHIB=.*/SENHA_LEITOR_SHIB=${SENHA_LEITOR_SHIB:=00123456}/" /scripts/popula.sh
   
   echo "Populando base $RAIZ_BASE_LDAP"
   /scripts/popula.sh && chmod -x /scripts/popula.sh
