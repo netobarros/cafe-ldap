@@ -7,6 +7,8 @@ DOMINIO_INST: domínio para a base LDAP, que será a referência da base ($RAIZ_
 
 SENHA_ADMIN: senha para o DN cn=admin,$RAIZ_BASE_LDAP
 
+DEBUG_LEVEL: nível de mensagem para debug do slapd
+
 # Sobre o CAFe
 
 * https://www.rnp.br/servicos/servicos-avancados/cafe
