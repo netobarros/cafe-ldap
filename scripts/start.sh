@@ -51,4 +51,4 @@ fi
 
 
 # inicia servico
-exec slapd -f /etc/ldap/slapd.conf -d ${DEBUG_LEVEL:=1024}
+exec slapd -h "ldap:/// ldaps:///" -f /etc/ldap/slapd.conf -d ${DEBUG_LEVEL:=1024}
