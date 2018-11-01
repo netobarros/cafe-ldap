@@ -8,5 +8,5 @@ servidor:
      - 636:636/tcp
    volumes:
      - ldap-config:/etc/ldap
-     - ldap-lib:/var/lib/ldap
+     - ldap-base:/var/lib/ldap
 
