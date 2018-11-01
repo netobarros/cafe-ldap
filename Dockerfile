@@ -28,4 +28,4 @@ COPY scripts/start.sh /scripts/start.sh
 
 CMD [ "/scripts/start.sh" ]
 
-#VOLUME [ "/var/lib/ldap", "/etc/ldap" ]
+VOLUME [ "/var/lib/ldap", "/etc/ldap" ]
