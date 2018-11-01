@@ -29,7 +29,7 @@ if [ ! -f "/etc/ldap/$HOSTNAME.key" ];then
 fi;
 
 # popula LDAP caso seja um container novo
-if [ -x /scripts/popula.sh ]; then
+if [ ! -f /var/lib/ldap/.populado ]; then
 
   sed -i "s/\$[{]RAIZ_BASE_LDAP[}]/$RAIZ_BASE_LDAP/g" /etc/ldap/slapd.conf
   sed -i "s/\$[{]RAIZ_BASE_LDAP[}]/$RAIZ_BASE_LDAP/g" /etc/ldap/ldap.conf
@@ -45,7 +45,7 @@ if [ -x /scripts/popula.sh ]; then
   sed -i "s/^SENHA_LEITOR_SHIB=.*/SENHA_LEITOR_SHIB=${SENHA_LEITOR_SHIB:=00123456}/" /scripts/popula.sh
   
   echo "Populando base $RAIZ_BASE_LDAP"
-  /scripts/popula.sh && chmod -x /scripts/popula.sh
+  /scripts/popula.sh && touch /var/lib/ldap/.populado
   
 fi
 
