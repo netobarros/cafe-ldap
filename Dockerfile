@@ -1,16 +1,13 @@
-FROM osixia/openldap
+FROM ubuntu:14.04.5
 
 MAINTAINER Antonio de Barros <antonio.barros@ufrr.br>
 
 RUN apt-get update \
-    && apt-get install -y wget net-tools \
+    && apt-get install -y wget net-tools slapd ldap-utils \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir /var/lib/ldap && chown openldap:openldap /var/lib/ldap
-
-# schemas
-RUN wget https://svn.rnp.br/repos/CAFe/conf/openldap/slapd -O /etc/default/slapd --no-check-certificate \
+RUN mkdir -p /etc/ldap/schema/ \
     && wget https://svn.rnp.br/repos/CAFe/conf/openldap/slapd.conf -O /etc/ldap/slapd.conf --no-check-certificate \
     && wget https://svn.rnp.br/repos/CAFe/conf/openldap/ldap.conf -O /etc/ldap/ldap.conf --no-check-certificate \
     && wget https://svn.rnp.br/repos/CAFe/conf/openldap/DB_CONFIG -O /var/lib/ldap/DB_CONFIG --no-check-certificate \
@@ -24,3 +21,11 @@ RUN wget https://svn.rnp.br/repos/CAFe/conf/openldap/slapd -O /etc/default/slapd
     && wget https://svn.rnp.br/repos/CAFe/scripts/homologacao/clientes/cafe-homolog-ldap.sh -O /scripts/cafe-homolog-ldap.sh --no-check-certificate \
     && chmod +x /scripts/*.sh
 
+EXPOSE 389/tcp
+EXPOSE 636/tcp
+
+COPY scripts/start.sh /scripts/start.sh
+
+CMD [ "/scripts/start.sh" ]
+
+#VOLUME [ "/var/lib/ldap", "/etc/ldap" ]
