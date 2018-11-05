@@ -20,8 +20,10 @@ Este comando criará a base dc=instituicao,dc=br populado com os dados gerados d
 
 # Observações
 
-* Os scripts referenciados no roteiro que ficam em /tmp dentro do container estão em /scripts
-* Não é necessário alterar os arquivos de configuração. O script /scripts/start.sh faz as substituições das variáveis $HOSTNAME, $DOMINIO_INST e $RAIZ_BASE_LDAP na primeira execução.
+* O script /scripts/start.sh faz as substituições das variáveis $HOSTNAME e $RAIZ_BASE_LDAP na primeira execução. Não é necessário alterar os arquivos de configuração
+* A variável $DOMINIO_INST deve ser preenchida conforme o comando de exemplo descrito anteriormente
+* $RAIZ_BASE_LDAP é preenchida automaticamente de acordo com a variável $DOMINIO_INST
+* Os scripts referenciados no roteiro que ficam em /tmp estão em /scripts dentro do container
 
 # Sobre o CAFe
 
