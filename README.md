@@ -1,17 +1,27 @@
 # CAFe
 
-Imagem para criar containers com LDAP padronizado para uso no projeto CAFe
+Imagem para criar containers com LDAP usando o esquema brEduPerson para uso no projeto CAFe
 
 # Variáveis ENV
+
 DOMINIO_INST: domínio para a base LDAP, que será a referência da base ($RAIZ_BASE_LDAP)
 
 SENHA_ADMIN: senha para o DN cn=admin,$RAIZ_BASE_LDAP
 
-DEBUG_LEVEL: nível de mensagem para debug do slapd
+SENHA_LEITOR_SHIB: senha para o DN cn=leitor-shib,$RAIZ_BASE_LDAP
+
+DEBUG_LEVEL: nível de mensagem para debug do slapd (padrão está 1024)
 
 # Exemplo de uso
 
-`docker run -e DOMINIO_INST="exemplo.edu.br" -e SENHA_ADMIN="1234" -p 389:389 -p 636:636 cafe-ldap`
+`docker run -e DOMINIO_INST="instituicao.br" -e SENHA_ADMIN="1234" -v ldap-config:/etc/ldap -v ldap-base:/var/lib/ldap -p 389:389 -p 636:636 cafe-ldap`
+
+Este comando criará a base dc=instituicao,dc=br populado com os dados gerados do script /scripts/popula.sh
+
+# Observações
+
+* Os scripts referenciados no roteiro que ficam em /tmp dentro do container estão em /scripts
+* Não é necessário alterar os arquivos de configuração. O script /scripts/start.sh faz as substituições das variáveis $HOSTNAME, $DOMINIO_INST e $RAIZ_BASE_LDAP na primeira execução.
 
 # Sobre o CAFe
 
